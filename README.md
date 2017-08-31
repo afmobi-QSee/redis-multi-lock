@@ -1,5 +1,6 @@
+go get github.com/afmobi-QSee/redis-multi-lock
 ````
-  RedisInit(&redis.Options{Addr:"127.0.0.1:6379"})
+    RedisInit(&redis.Options{Addr:"127.0.0.1:6379"})
     lck := NewLockstruct("a", "b", "c")
     defer lck.UnLock()
     lck.Lock()
