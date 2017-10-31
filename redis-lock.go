@@ -41,10 +41,14 @@ func NewLockstructArray(keys []string)*Lockstruct{
 }
 
 func (this *Lockstruct)Lock(){
+	this.LockTime(time.Minute)
+}
+
+func (this *Lockstruct)LockTime(lockTimeOut time.Duration){
 	rclient := getRedisClient()
 	for i, key := range this.keys{
 		locka, err := lock.ObtainLock(rclient, key, &lock.LockOptions{
-			LockTimeout:time.Minute,
+			LockTimeout:lockTimeOut,
 		})
 		if err != nil{
 			this.Error = err
